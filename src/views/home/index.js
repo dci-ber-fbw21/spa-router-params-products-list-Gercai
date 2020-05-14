@@ -1,8 +1,10 @@
 import React from "react";
+import Products from "../products";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
+  withRouter,
   Link
 } from "react-router-dom";
 
@@ -11,12 +13,13 @@ import "./index.scss";
 class Home extends React.Component{
 
 
-
 componentDidMount(){
 
 }
 
 GoTo(){
+  let {history} = this.props;
+  console.log(history);
 
 }
 
@@ -26,7 +29,13 @@ return (
   <article>
     <section className="products">
     <div>Welcome Visitor</div>
-    <button onClick={() => this.GoTo()}>Go to Products</button>
+    <Router>
+    <button onClick={() => this.GoTo()}>GoTo
+    </button>
+    <Route path="/products" component={Products}>  
+    </Route>
+    </Router>
+    
     </section>
   </article>
 )
@@ -37,4 +46,4 @@ return (
 
 }
 
-export default Home;
+export default withRouter(Home);

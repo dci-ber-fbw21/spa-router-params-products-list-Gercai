@@ -1,6 +1,7 @@
 import React from "react";
 import {
   BrowserRouter as Router,
+  withRouter,
   Switch,
   Route,
   Link
@@ -64,4 +65,4 @@ return (
 
 }
 
-export default Home;
+export default withRouter(Home);
