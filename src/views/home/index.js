@@ -2,26 +2,23 @@ import React from "react";
 import Products from "../products";
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
   withRouter,
-  Link
 } from "react-router-dom";
 
 import "./index.scss";
 
 class Home extends React.Component{
 
-
 componentDidMount(){
 
 }
 
-GoTo(){
+GoTo(pathname){
   let {history} = this.props;
   console.log(history);
   history.push({
-    pathname:"/products",
+    pathname,
     search: "?ok"
   })
 
@@ -32,24 +29,17 @@ render(){
   let {pathname} = this.props.location;
 return (
 
-  <article>
+    <article>
     <section className="products">
     <div>Welcome Visitor</div>
-    
-
-
 {
   pathname==="/products"?
-  <div>ai</div>:
-  <div>oh</div>
+  <Products></Products>:
+  <Router>
+  <button onClick={() => this.GoTo("/products")}>GoTo</button>
+  <Route path="/products" component={Products}></Route>
+  </Router>
 }
-
-    <Router>
-        <button onClick={() => this.GoTo()}>GoTo
-        </button>
-    <Route path="/products" component={Products}></Route>
-    </Router>
-    
     </section>
   </article>
 )}

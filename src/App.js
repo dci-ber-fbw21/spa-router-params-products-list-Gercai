@@ -13,16 +13,10 @@ import './App.css';
 
 function App() {
 
-
-
   return (
     <div className="App">
       <Router>
-          
           <Home/>
-
-
-
       </Router>
     </div>
   );
