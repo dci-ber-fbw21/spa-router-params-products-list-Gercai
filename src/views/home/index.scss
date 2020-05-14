@@ -1,0 +1,24 @@
+.products{
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    justify-content: left;
+    align-items: left;
+    color: white;
+
+    padding: 30px 0 20px 0;
+
+    div{
+        padding: 10px;
+        text-align: left;
+    } 
+    button{
+        color: blue;
+        background-color: white;
+        border: none;
+        width: 20%;
+        margin: 10px;
+    
+    }
+}
