@@ -12,19 +12,17 @@ import Products from "./views/products";
 import './App.css';
 
 function App() {
+
+
+
   return (
     <div className="App">
       <Router>
+          
+          <Home/>
 
-<Link to="/">Home</Link>
-      
-<Switch>
-  <Route path="/">
-      <Home/>
-  </Route>
- 
-</Switch>  
-    
+
+
       </Router>
     </div>
   );
