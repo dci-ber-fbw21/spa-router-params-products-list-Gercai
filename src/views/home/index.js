@@ -34,11 +34,11 @@ componentDidMount(){
   })
 }
 
-GoTo(pathname){
+GoTo(pathname, search){
   let {history} = this.props;
   history.push({
     pathname,
-    search: "?ok"
+    search
   })
 }
 
@@ -61,7 +61,7 @@ return (
   this.state.bestSeller
   .filter((i, index) => (index < 4))
   .map((element) =>{
-    return( <div>
+    return( <div onClick={() => this.GoTo("/productPage",element.id)}>
       
         {element.slug}
 
