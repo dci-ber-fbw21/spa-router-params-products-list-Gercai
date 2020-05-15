@@ -5,7 +5,7 @@ import {
 
 import Home from "./views/home";
 import Products from "./views/products";
-import Hub from "./views/hub";
+import Hub from "./views/nexus";
 
 
 import './App.scss';
