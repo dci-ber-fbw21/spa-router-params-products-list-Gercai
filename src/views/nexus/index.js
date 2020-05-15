@@ -6,13 +6,10 @@ import Home from "../home";
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
-  Link,
   withRouter,
 } from "react-router-dom";
 
 import "./index.scss";
-import productPage from "../productPage";
 
 class Hub extends React.Component{
 

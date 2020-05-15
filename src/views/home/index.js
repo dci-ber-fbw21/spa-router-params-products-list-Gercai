@@ -25,7 +25,7 @@ componentDidMount(){
 
   
   let bestSeller = products.sort((a,b) =>{
-    return a.price - b.price;
+    return b.price - a.price;
   });
 
 
@@ -44,25 +44,28 @@ GoTo(pathname){
 
 render(){
 
-  console.log(this.state.bestSeller);
 
 return (
 
-    <article>
+    <article className="home">
 
   <section className="products">
+  
   <div>Welcome Visitor</div>
   <button onClick={() => this.GoTo("/products")}>GoTo</button>
+  
   </section>  
 
-<section className="Productlist">
+<section className="productList">
 {
   this.state.bestSeller
   .filter((i, index) => (index < 4))
   .map((element) =>{
     return( <div>
       
-{element.slug}
+        {element.slug}
+
+      <p>{element.price.toFixed(2)} €</p>
       </div>)
   })
 }
