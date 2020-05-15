@@ -1,6 +1,5 @@
 import React from "react";
-import Products from "../products";
-import ProductPage from "../productPage";
+import products from  "../../data/products.json";
 import {
   BrowserRouter as Router,
   Route,
@@ -8,11 +7,31 @@ import {
 } from "react-router-dom";
 
 import "./index.scss";
+import { thisExpression } from "@babel/types";
 
 class Home extends React.Component{
 
+
+  constructor(props){
+    super(props);
+    this.state={
+      bestSeller: []
+  }
+  }
+
+
 componentDidMount(){
 
+
+  
+  let bestSeller = products.sort((a,b) =>{
+    return a.price - b.price;
+  });
+
+
+  this.setState({
+    bestSeller
+  })
 }
 
 GoTo(pathname){
@@ -25,7 +44,8 @@ GoTo(pathname){
 
 render(){
 
-  let {pathname} = this.props.location;
+  console.log(this.state.bestSeller);
+
 return (
 
     <article>
@@ -34,6 +54,21 @@ return (
   <div>Welcome Visitor</div>
   <button onClick={() => this.GoTo("/products")}>GoTo</button>
   </section>  
+
+<section className="Productlist">
+{
+  this.state.bestSeller
+  .filter((i, index) => (index < 4))
+  .map((element) =>{
+    return( <div>
+      
+{element.slug}
+      </div>)
+  })
+}
+</section>
+
+
   </article>
 )}
 

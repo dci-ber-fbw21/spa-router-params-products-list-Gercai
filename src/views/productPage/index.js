@@ -43,7 +43,12 @@ return (
         
     <section className="container">
             <button onClick={() => this.GoTo("/products")}> back to </button>  
+       
         <h1>{this.state.product.slug}</h1>
+
+        <img src={this.state.product.image}></img>
+        <p>{this.state.product.description}</p>
+
     </section>
 
   </article>
