@@ -14,27 +14,26 @@ import "./index.scss";
 class Home extends React.Component{
 
 componentDidMount(){
-    // let data = JSON.parse(products);
-    // console.log(data);
 }
 
 
-GoTo(){
-
-    
+GoTo2(pathname){
+  let {history} = this.props;
+  history.push({
+    pathname,
+    search: "?ok"
+  })
 }
-
 render(){
 
-    // let data = JSON.parse(products);
 
 
 return (
   <article>
-
     <section>
-        back to 
+      <button onClick={() => this.GoTo2("/")} > back to </button>  
     </section>
+
 
       <table>
           <thead>

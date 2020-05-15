@@ -1,5 +1,5 @@
 .products{
-    background-color: blue;
+    background-color: #00b3b3;
     display: flex;
     flex-direction: column;
     width: 60%;
@@ -14,11 +14,15 @@
         text-align: left;
     } 
     button{
-        color: blue;
+        color: #00b3b3;
         background-color: white;
         border: none;
         width: 20%;
         margin: 10px;
     
     }
+}
+
+.welcome{
+    width: 100%;
 }

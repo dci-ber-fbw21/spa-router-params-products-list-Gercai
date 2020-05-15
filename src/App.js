@@ -1,22 +1,24 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
 } from "react-router-dom";
 
 import Home from "./views/home";
 import Products from "./views/products";
+import Hub from "./views/hub";
 
-import './App.css';
+
+import './App.scss';
+
+
+
 
 function App() {
 
   return (
     <div className="App">
       <Router>
-          <Home/>
+      <Hub></Hub>
       </Router>
     </div>
   );

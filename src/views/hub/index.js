@@ -1,14 +1,18 @@
 import React from "react";
 import Products from "../products";
+import Home from "../home";
+
 import {
   BrowserRouter as Router,
   Route,
+  Switch,
+  Link,
   withRouter,
 } from "react-router-dom";
 
 import "./index.scss";
 
-class Home extends React.Component{
+class Hub extends React.Component{
 
 componentDidMount(){
 
@@ -25,27 +29,19 @@ GoTo(pathname){
 render(){
 
   let {pathname} = this.props.location;
+  console.log(pathname);
 return (
 
-    <article>
-{
-  pathname==="/products"?
-  
-  <Products></Products>:
-  
-  <section className="products">
-
-<div>Welcome Visitor</div>
-
-  <button onClick={() => this.GoTo("/products")}>GoTo</button>
-  
-  <Route path="/products" component={Products}></Route>
-  </section>
-  
-}
+  <article>
+    <p>Image_Placeholder</p>
+    <section className="container">
+      <Router>
+        <Home/>
+      </Router>
+    </section>
   </article>
 )}
 
 }
 
-export default withRouter(Home);
+export default withRouter(Hub);
