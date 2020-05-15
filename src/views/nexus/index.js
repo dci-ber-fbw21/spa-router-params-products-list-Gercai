@@ -1,5 +1,6 @@
 import React from "react";
 import Products from "../products";
+import ProductPage from "../productPage";
 import Home from "../home";
 
 import {
@@ -11,6 +12,7 @@ import {
 } from "react-router-dom";
 
 import "./index.scss";
+import productPage from "../productPage";
 
 class Hub extends React.Component{
 
@@ -22,7 +24,7 @@ GoTo(pathname){
   let {history} = this.props;
   history.push({
     pathname,
-    search: "?ok"
+    search: ""
   })
 }
 
@@ -36,8 +38,13 @@ return (
     <p>Image_Placeholder</p>
     <section className="container">
       <Router>
-        <Home/>
-      </Router>
+   
+   <Route path="/home" component={Home}></Route>
+   <Route path="/products" component={Products}></Route>
+   <Route path="/productPage" component={ProductPage}></Route>
+   <Route exact path="/" component={Home}></Route>
+
+     </Router>
     </section>
   </article>
 )}

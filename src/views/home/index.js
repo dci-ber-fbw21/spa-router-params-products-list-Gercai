@@ -1,5 +1,6 @@
 import React from "react";
 import Products from "../products";
+import ProductPage from "../productPage";
 import {
   BrowserRouter as Router,
   Route,
@@ -28,21 +29,11 @@ render(){
 return (
 
     <article>
-{
-  pathname==="/products"?
-  
-  <Products></Products>:
-  
+
   <section className="products">
-
-<div>Welcome Visitor</div>
-
+  <div>Welcome Visitor</div>
   <button onClick={() => this.GoTo("/products")}>GoTo</button>
-  
-  <Route path="/products" component={Products}></Route>
-  </section>
-  
-}
+  </section>  
   </article>
 )}
 

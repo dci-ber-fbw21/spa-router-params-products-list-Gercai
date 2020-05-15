@@ -1,13 +1,8 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
   withRouter,
-  Switch,
-  Route,
-  Link
 } from "react-router-dom";
 import products from  "../../data/products.json";
-
 import "./index.scss";
 
 
@@ -16,26 +11,21 @@ class Home extends React.Component{
 componentDidMount(){
 }
 
-
-GoTo2(pathname){
-  let {history} = this.props;
+GoTo(pathname,search){
+  let {history,location, match} = this.props;
   history.push({
     pathname,
-    search: "?ok"
+    search 
   })
 }
 render(){
 
-
-
-return (
+  return (
   <article>
     <section>
-      <button onClick={() => this.GoTo2("/")} > back to </button>  
+      <button onClick={() => this.GoTo("/")} > back to </button>  
     </section>
-
-
-      <table>
+        <table>
           <thead>
               <tr>
               <th>Name</th>
@@ -45,11 +35,16 @@ return (
           </thead>
           <tbody>
       {products.map((details,index) =>{
+
+        let price = details.price.toFixed(2);
+
+        let product = details.id;
+
           return(
-              <tr>
+              <tr onClick={() => this.GoTo("/productPage",product)}>
               <td>{details.name}</td>
               <td>{details.shortDescription}</td>
-              <td>{details.price}</td>
+              <td>{price} €</td>
               </tr>
           )
       })
@@ -57,11 +52,7 @@ return (
       </tbody>
       </table>
   </article>
-)
-
-
-}
-
+)}
 
 }
 

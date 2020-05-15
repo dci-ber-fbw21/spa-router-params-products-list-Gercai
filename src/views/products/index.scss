@@ -6,13 +6,16 @@ table{
         padding: 10px;
         background-color: #00b3b3;
     }
+
+    tbody tr{
+        &:hover{
+            background-color: blue;
+     
+        }
+    }
+
     tbody td{
         padding: 10px;
         border-bottom: solid black 1px;    
- 
-        tr{
-            
-            border: solid black 1px;    
-        }
     }
 }

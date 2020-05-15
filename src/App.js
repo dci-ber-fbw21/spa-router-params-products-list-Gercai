@@ -10,9 +10,6 @@ import Hub from "./views/hub";
 
 import './App.scss';
 
-
-
-
 function App() {
 
   return (
