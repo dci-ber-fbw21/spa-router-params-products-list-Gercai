@@ -12,23 +12,48 @@ class ProductPage extends React.Component{
 constructor(props){
     super(props);
     this.state={
-        product: {}
+        product: {},
+        productIndex: 0
     }
 }
 
 
 componentDidMount(){
     let {history,location, match} = this.props;
-
     let product = products.find(({id}) => id == history.location.search.slice(1));
-
-    console.log(product);
+    let productIndex = products.indexOf(product);
     this.setState({
-        product
+        product,
+        productIndex
     })
 }
 
-GoTo(pathname){
+next(index){
+
+console.log(index);
+
+
+  if(index===-1){
+    index = products.length-1;
+  }
+  else if(index === products.length){
+    index= 0;
+  };
+
+  let product = products[index];
+  let productIndex = products.indexOf(product);
+
+
+  this.setState({
+    product,
+    productIndex
+})
+
+  
+
+}
+
+goTo(pathname){
     let {history,location, match} = this.props;
     // console.log(match);
   history.push({
@@ -42,7 +67,7 @@ return (
   <article>
         
     <section className="container">
-            <button onClick={() => this.GoTo("/products")}> back to </button>  
+            <button onClick={() => this.goTo("/products")}> back to </button>  
        
         <h1>{this.state.product.slug}</h1>
 
@@ -50,6 +75,9 @@ return (
         <p>{this.state.product.description}</p>
 
     </section>
+
+<p onClick={() => this.next(this.state.productIndex +1)}>Next</p>
+<p onClick={() => this.next(this.state.productIndex -1)}>Previous</p>
 
   </article>
 )}
