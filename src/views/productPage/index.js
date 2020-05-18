@@ -5,8 +5,6 @@ import {
 import "./index.scss";
 import products from  "../../data/products.json";
 
-
-
 class ProductPage extends React.Component{
 
 constructor(props){
@@ -16,7 +14,6 @@ constructor(props){
         productIndex: 0
     }
 }
-
 
 componentDidMount(){
     let {history,location, match} = this.props;
@@ -28,10 +25,11 @@ componentDidMount(){
     })
 }
 
+componentDidUpdate(){
+  console.log("ok");
+}
+
 next(index){
-
-console.log(index);
-
 
   if(index===-1){
     index = products.length-1;
@@ -49,13 +47,10 @@ console.log(index);
     productIndex
 })
 
-  
-
 }
 
 goTo(pathname){
     let {history,location, match} = this.props;
-    // console.log(match);
   history.push({
     pathname,
     search: "?ok"
@@ -70,15 +65,14 @@ return (
             <button onClick={() => this.goTo("/products")}> back to </button>  
        
         <h1>{this.state.product.slug}</h1>
-
-        <img src={this.state.product.image}></img>
+        <img src={this.state.product.image} alt=""></img>
         <p>{this.state.product.description}</p>
 
     </section>
-
-<p onClick={() => this.next(this.state.productIndex +1)}>Next</p>
-<p onClick={() => this.next(this.state.productIndex -1)}>Previous</p>
-
+      <section className="switchTo">
+          <p onClick={() => this.next(this.state.productIndex +1)}>Next</p>
+          <p onClick={() => this.next(this.state.productIndex -1)}>Previous</p>
+    </section>
   </article>
 )}
 }
