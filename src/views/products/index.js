@@ -3,6 +3,8 @@ import {
   withRouter,
 } from "react-router-dom";
 import products from  "../../data/products.json";
+import productsSorted from  "../../data/products.json";
+
 import "./index.scss";
 
 
@@ -15,50 +17,57 @@ class Home extends React.Component{
     
     this.state= {
       products: products,
+      productsDefault: productsSorted,
+      sortImage: "",
       sortOrder: true
+
     }
   }
 
 componentDidMount(){
-  console.log("mount");
+  
 }
 
 componentDidUpdate(){
   
   let {location} = this.props;
   let sort = location.search.split("=")[1];
+  console.log(sort);
   let sorting = [];
+  let image = "";
 
-  switch(sort){
+  console.log(products);
+
+   switch(sort){
     case "asc":
         sorting =  this.state.products.sort((a,b) => {
           return a.price - b.price
         })
+         image = "up";
         break;
     case "desc":
          sorting =     this.state.products.sort((a,b) => {
               return b.price - a.price
         })
-        break; 
-        default: 
-        sorting = products;
+          image = "down";
+        break;
+      default: 
+        sorting = this.state.productsDefault;
+        image = "";
         break;
   }
+
 
   if(this.state.order){
     this.setState({
       products: sorting,
-      order: false 
+      order: false,
+      sortImage: image
     })
-  }
-  
-
-}
+  }}
 
 goTo(pathname,search){
-  let {history,location, match} = this.props;
-
-
+  let {history} = this.props;
   history.push({
     pathname,
     search 
@@ -72,7 +81,7 @@ sort(search){
   })   
   
   
-  let {history,location, match} = this.props;
+  let {history} = this.props;
     history.replace({
     pathname,
     search 
@@ -98,7 +107,7 @@ render(){
               <tr>
               <th>Name</th>
               <th>Description</th>
-              <th>Price</th>
+              <th>Price <span>{this.state.sortImage}</span></th>
               </tr>
           </thead>
           <tbody>
