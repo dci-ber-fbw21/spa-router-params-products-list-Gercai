@@ -2,69 +2,66 @@ import React from "react";
 import {
   withRouter,
 } from "react-router-dom";
-import products from  "../../data/products.json";
-import productsSorted from  "../../data/products.json";
-
+import productList from  "../../data/products.json";
 import "./index.scss";
+import { exportDefaultSpecifier } from "@babel/types";
 
 
 class Home extends React.Component{
 
-
   constructor(props){
 
     super(props);
-    
     this.state= {
-      products: products,
-      productsDefault: productsSorted,
+      products: productList,
       sortImage: "",
-      sortOrder: true
-
+      sortOrder: false
     }
-  }
 
-componentDidMount(){
-  
-}
+    this.baseState = this.state;
+  }
 
 componentDidUpdate(){
   
   let {location} = this.props;
   let sort = location.search.split("=")[1];
-  console.log(sort);
-  let sorting = [];
+  let newArray = [];
+  let sorting = this.state.products.concat(newArray);
   let image = "";
-
-  console.log(products);
 
    switch(sort){
     case "asc":
-        sorting =  this.state.products.sort((a,b) => {
+        sorting = sorting.sort((a,b) => {
           return a.price - b.price
         })
          image = "up";
         break;
     case "desc":
-         sorting =     this.state.products.sort((a,b) => {
+       sorting =  sorting.sort((a,b) => {
               return b.price - a.price
         })
-          image = "down";
+        image = "down";
         break;
-      default: 
-        sorting = this.state.productsDefault;
+      default:
         image = "";
         break;
   }
 
-
-  if(this.state.order){
+  if(this.state.order&&image){
     this.setState({
       products: sorting,
       order: false,
       sortImage: image
     })
-  }}
+  } else if(this.state.order&&!image){
+    this.setState({
+      products: this.baseState.products,
+      order: false,
+      sortImage: image
+    })
+  }
+
+  }
 
 goTo(pathname,search){
   let {history} = this.props;
@@ -79,8 +76,7 @@ sort(search){
   this.setState({
     order: true
   })   
-  
-  
+
   let {history} = this.props;
     history.replace({
     pathname,
