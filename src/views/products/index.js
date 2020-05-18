@@ -15,11 +15,44 @@ class Home extends React.Component{
     
     this.state= {
       products: products,
-      productsSorted : []
+      sortOrder: true
     }
   }
 
 componentDidMount(){
+  console.log("mount");
+}
+
+componentDidUpdate(){
+  
+  let {location} = this.props;
+  let sort = location.search.split("=")[1];
+  let sorting = [];
+
+  switch(sort){
+    case "asc":
+        sorting =  this.state.products.sort((a,b) => {
+          return a.price - b.price
+        })
+        break;
+    case "desc":
+         sorting =     this.state.products.sort((a,b) => {
+              return b.price - a.price
+        })
+        break; 
+        default: 
+        sorting = products;
+        break;
+  }
+
+  if(this.state.order){
+    this.setState({
+      products: sorting,
+      order: false 
+    })
+  }
+  
+
 }
 
 goTo(pathname,search){
@@ -34,13 +67,13 @@ goTo(pathname,search){
 
 sort(search){
   let pathname= "/products";
+  this.setState({
+    order: true
+  })   
+  
+  
   let {history,location, match} = this.props;
-
-  // let {slug} = match.params;
-  // let {search} = this.props.location;
-
-  console.log(search);
-  history.replace({
+    history.replace({
     pathname,
     search 
   })
@@ -56,7 +89,7 @@ render(){
       <button onClick={() => this.goTo("/")} > back to </button>  
     </section>
     <section className="flex">
-        <p onClick={() => this.sort("sort=")}>Reset</p>
+        <p onClick={() => this.sort("")}>Reset</p>
         <p onClick={() => this.sort("sort=asc")}>Sort Up</p>
         <p onClick={() => this.sort("sort=desc")}>Sort Down</p>
     </section>
@@ -69,7 +102,7 @@ render(){
               </tr>
           </thead>
           <tbody>
-      {products.map((details,index) =>{
+      {this.state.products.map((details,index) =>{
 
         let price = details.price.toFixed(2);
 
